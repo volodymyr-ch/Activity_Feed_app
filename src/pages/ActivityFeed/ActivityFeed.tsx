@@ -1,6 +1,8 @@
 import { mockNotes } from 'mocks/activityFeed';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { Note, User } from 'types';
+import * as S from './ActivityFeed.styles';
+import { List } from './components/List';
 
 type Props = {
   user: User;
@@ -10,5 +12,17 @@ type Props = {
 export const ActivityFeed: FC<Props> = ({ user, participant }) => {
   const [notes, setNotes] = useState<Note[]>(mockNotes);
 
-  return <span>ActivityFeed</span>;
+  const deleteNote = useCallback((id: string) => {
+    setNotes((prev) => prev.filter((note) => note.id !== id));
+  }, []);
+
+  return (
+    <S.Wrapper>
+      <S.Container>
+        <S.ContentWrapper>
+          <List currUserId={user.id} notes={notes} onDeleteClick={deleteNote} />
+        </S.ContentWrapper>
+      </S.Container>
+    </S.Wrapper>
+  );
 };
