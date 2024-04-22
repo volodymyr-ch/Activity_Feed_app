@@ -23,6 +23,7 @@ export const Input: FC<Props> = ({ participantFullName, onSubmit }) => {
 
     onSubmit(noteType, value, Date.now());
     setValue('');
+    inputRef?.current?.focus();
   };
 
   const handleNoteTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
