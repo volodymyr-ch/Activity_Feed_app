@@ -6,7 +6,7 @@ export const Wrapper = styled.li`
 
   .delete-icon {
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
   }
 
   &:hover {
